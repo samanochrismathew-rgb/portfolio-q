@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samano - Personal Website</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7fa;
+        color: #333;
+        line-height: 1.6;
+        min-height: 100vh;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        padding: 15px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+    }
+
+    nav ul li {
+        margin: 0 20px;
+    }
+
+    nav ul li a {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2c3e50;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+        background: #3498db;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    /* Main content wrapper */
+    .content {
+        padding-top: 80px;
+    }
+
+    /* Home section */
+    #home {
+        display: block;
+    }
+
+    /* Contact section */
+    #contact {
+        display: none;
+        max-width: 800px;
+        margin: 100px auto;
+        background: #fff;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        text-align: center;
+        border: 1px solid #e0e0e0;
+    }
+
+    #contact h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    #contact p {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #555;
+    }
+
+    #contact .icons {
+        margin-top: 30px;
+    }
+
+    #contact .icons a {
+        display: inline-block;
+        margin: 0 15px;
+        font-size: 32px;
+        color: #7f8c8d;
+        transition: color 0.3s, transform 0.3s;
+    }
+
+    #contact .icons a:hover {
+        color: #3498db;
+        transform: scale(1.2);
+    }
+
+    /* Main container */
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* Left image */
+    .left-side {
+        flex: 1;
+        min-width: 250px;
+        background: #ecf0f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .profile-pic {
+        width: 70%;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        cursor: pointer;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .profile-pic:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Right content */
+    .center-side {
+        flex: 2;
+        padding: 50px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .center-side h1 {
+        font-size: 38px;
+        margin-bottom: 15px;
+        color: #2c3e50;
+    }
+
+    .center-side p {
+        margin-bottom: 12px;
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* Social icons */
+    .icons {
+        margin-top: 25px;
+    }
+
+    .icons a {
+        display: inline-block;
+        margin-right: 20px;
+        font-size: 28px;
+        color: #7f8c8d;
+        transition: color 0.3s, transform 0.3s;
+    }
+
+    .icons a:hover {
+        color: #3498db;
+        transform: scale(1.3);
+    }
+
+    /* Introduction section */
+    .intro {
+        max-width: 1000px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        font-size: 16px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .intro h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+
+    /* Instagram-style gallery (square images) */
+    .gallery {
+        max-width: 1000px;
+        margin: 40px auto 80px auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .gallery a {
+        display: block;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        aspect-ratio: 1 / 1;
+        border: 1px solid #e0e0e0;
+    }
+
+    .gallery img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+
+    .gallery a:hover img {
+        transform: scale(1.05);
+    }
+
+    .gallery a:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Popup */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        animation: pop 0.3s ease;
+        border: 1px solid #e0e0e0;
+    }
+
+    .popup img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @keyframes pop {
+        0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            font-size: 16px;
+            padding: 8px 15px;
+        }
+
+        .container {
+            flex-direction: column;
+            margin: 20px;
+        }
+
+        .left-side {
+            padding: 30px 0;
+        }
+
+        .center-side {
+            padding: 30px 20px;
+        }
+
+        .intro {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .gallery {
+            margin: 20px;
+            gap: 15px;
+        }
+
+        #contact {
+            margin: 80px 20px;
+            padding: 30px 20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <ul>
+        <li><a href="#" id="home-link" class="active">Home</a></li>
+        <li><a href="#" id="contact-link">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="content">
+    <!-- Home Section -->
+    <div id="home">
+        <div class="container">
+            <div class="left-side">
+                <img src="meyarn.jpg" alt="Robert's Picture" class="profile-pic popup-trigger" id="profilePic">
+            </div>
+            <div class="center-side">
+                <h1>Chris Mathew I. Samano</h1>
+                <p><strong>Role:</strong> Average Programmer</p>
+                <p><strong>Address:</strong> 128 aqo na lung kaze</p>
+                <p><strong>Hobbies:</strong> Playing Online Games, Reading, Watching Anime & Movies</p>
+
+                <div class="icons">
+                    <a href="https://www.instagram.com/mattchuuya/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/chrismathew.samano.1" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="intro">
+            <h2>Introduction</h2>
+            <p>
+                Hi! Ako si Matt, 19 years old. Mahilig akong maglaro at manood ng anime at movies.  
+                Palaging mag-isa pero masaya akong mag-explore ng iba't ibang bagay online.  
+                Sometimes I feel a bit sad, pero I keep myself entertained with games at hobbies ko.
+            </p>
+        </div>
+
+        <!-- Instagram-style gallery -->
+        <div class="gallery">
+            <a href="#"><img src="binondo.jpg" alt="Gallery Image 1" class="popup-trigger"></a>
+            <a href="#"><img src="mlbb.jpg" alt="Gallery Image 2" class="popup-trigger"></a>
+            <a href="#"><img src="winter.jpg" alt="Gallery Image 3" class="popup-trigger"></a>
+            <a href="#"><img src="hakot.jpg" alt="Gallery Image 4" class="popup-trigger"></a>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact">
+        <h2>Get in Touch</h2>
+        <p><strong>Email:</strong> samanochrismathew@gmail.com</p>
+        <p><strong>Phone:</strong> +63 938 829 9890</p>
+        <p><strong>Address:</strong> 128 Aqo Na Lung Kaze</p>
+        <p>Feel free to reach out for collaborations or just to say hi!</p>
+        <div class="icons">
+            <a href="https://www.instagram.com/mattchuuya/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/chrismathew.samano.1" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/watch?v=LTyAa7_GxwI" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Popup container -->
+<div class="popup" id="popup">
+    <img src="" alt="Popup Image" id="popupImg">
+</div>
+
+<script>
+    // Navigation toggle
+    const homeLink = document.getElementById('home-link');
+    const contactLink = document.getElementById('contact-link');
+    const homeSection = document.getElementById('home');
+    const contactSection = document.getElementById('contact');
+
+    homeLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        homeSection.style.display = 'block';
+        contactSection.style.display = 'none';
+        homeLink.classList.add('active');
+        contactLink.classList.remove('active');
+    });
+
+    contactLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        homeSection.style.display = 'none';
+        contactSection.style.display = 'block';
+        contactLink.classList.add('active');
+        homeLink.classList.remove('active');
+    });
+
+    // Popup functionality (unchanged)
+    const triggers = document.querySelectorAll('.popup-trigger');
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popupImg');
+    const profilePic = document.getElementById('profilePic');
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            popup.style.display = 'block';
+
+            if(trigger === profilePic){
+                popup.style.width = '300px';
+                popup.style.height = '300px';
+                popup.style.borderRadius = '50%';
+            } else {
+                popup.style.width = '300px';
+                popup.style.height = '300px';
+                popup.style.borderRadius = '10px';
+            }
+
+            popupImg.src = trigger.src;
+        });
+    });
+
+    document.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
